@@ -24,6 +24,10 @@ app.get("/blog", (req, res) => {
   res.render("site/blog");
 });
 
+app.get("/contact", (req, res) => {
+  res.render("site/contact");
+});
+
 app.listen(port, hostname, () => {
   console.log(`listining! http://${hostname}:${port}/`);
 });
