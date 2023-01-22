@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const Post = require("../models/Post");
 
 // "/" ifadesi yonlendirmenin nereye gidecegini belirtiyor
 // , den sonraki kisim callbeck fonksiyonu
@@ -12,7 +13,11 @@ router.get("/about", (req, res) => {
 });
 
 router.get("/blog", (req, res) => {
-  res.render("site/blog");
+  Post.find({})
+    .lean()
+    .then((posts) => {
+      res.render("site/blog", { posts: posts });
+    });
 });
 
 router.get("/contact", (req, res) => {
